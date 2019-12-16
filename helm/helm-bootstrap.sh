@@ -5,7 +5,7 @@ cd /home/vagrant/
 wget https://get.helm.sh/helm-v$HELM_VERSION-linux-amd64.tar.gz
 tar -xzvf  helm-v$HELM_VERSION-linux-amd64.tar.gz 2>/dev/null
 cd linux-amd64 && \
-    mv helm /usr/local/bin/helm
+  sudo  mv helm /usr/local/bin/helm
 
 #cat <<EOF > rbac-tiller.yaml
 #apiVersion: v1
@@ -34,7 +34,8 @@ kubectl create clusterrolebinding tiller \
   --serviceaccount=kube-system:tiller
 
 helm init --service-account tiller
-sleep 10
+
+sleep 30
 # Test Helm
 helm version --short
 helm ls --debug

@@ -18,6 +18,8 @@ echo "Configuring Kubernetes Master"
     kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
     kubeadm token create --print-join-command >> /etc/kubeadm_join_cmd.sh
     chmod +x /etc/kubeadm_join_cmd.sh
+    # Modify kube-apiserver
+    #sed -i.bak  -e "26i\ \ \ \ \- --runtime-config=apps/v1beta1=true,extensions/v1beta1/deployments=true" /etc/kubernetes/manifests/kube-apiserver.yaml
 
     # required for setting up password less ssh between guest VMs
     sudo sed -i "/^[^#]*PasswordAuthentication[[:space:]]no/c\PasswordAuthentication yes" /etc/ssh/sshd_config
