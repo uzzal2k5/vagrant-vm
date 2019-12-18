@@ -12,7 +12,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/mnt/data"
+    path: "/mnt/minion"
 
 ---
 apiVersion: v1
@@ -28,7 +28,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/mnt/data"
+    path: "/mnt/postgresql"
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -43,7 +43,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/mnt/data"
+    path: "/mnt/prometheus"
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -58,7 +58,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/mnt/data"
+    path: "/mnt/redis"
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -67,10 +67,10 @@ metadata:
   labels:
     type: local
 spec:
-  storageClassName: gitlab-redis-storage
+  storageClassName: gitlab-gitaly-storage
   capacity:
     storage: 50Gi
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/mnt/data"
+    path: "/mnt/gitaly"
